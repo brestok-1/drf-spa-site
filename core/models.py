@@ -19,3 +19,15 @@ class Article(models.Model):
     def __str__(self):
         return self.title
 
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='comments')
+    username = models.ForeignKey(User, on_delete=models.CASCADE, related_name='user_name')
+    text = models.TextField(default='')
+    time_created = models.DateTimeField(default=now)
+
+    class Meta:
+        ordering = ['-time_created']
+
+    def __str__(self):
+        return self.text

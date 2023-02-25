@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from rest_framework import viewsets, permissions, pagination, generics
+from rest_framework import viewsets, permissions, pagination, generics, filters
+from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from taggit.models import Tag
 
-from core.models import Article
-from core.serializers import ArticleSerializer, TagSerializer, ContactSerializer
+from core.models import Article, Comment
+from core.serializers import ArticleSerializer, TagSerializer, ContactSerializer, RegisterSerializer, UserSerializer, \
+    CommentSerializer
 from core.tasks import send_feedback
 
 
@@ -17,10 +19,12 @@ class PageNumberSetPaginator(pagination.PageNumberPagination):
 
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
+    pagination_class = PageNumberSetPaginator
     queryset = Article.objects.all()
     lookup_field = 'slug'  # The model field that should be used for performing object lookup of individual model instances
     permission_classes = [permissions.AllowAny]
-    pagination_class = PageNumberSetPaginator
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['content', 'h1']
 
 
 class TagDetailView(generics.ListAPIView):
@@ -60,3 +64,38 @@ class ContactView(APIView):
             message = data.get('message')
             send_feedback.delay(name, email, message, subject)
             return Response({'success': 'Sent'})
+
+
+class RegisterView(generics.GenericAPIView):
+    permission_classes = [permissions.AllowAny]
+    serializer_class = RegisterSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+        return Response({
+            'user': UserSerializer(user, context=self.get_serializer_context()).data,
+            'message': 'User has created successfully'
+        })
+
+
+class ProfileView(generics.GenericAPIView):
+    permission_classes = (permissions.IsAuthenticated,)
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        return Response({
+            "user": UserSerializer(request.user, context=self.get_serializer_context()).data
+        })
+
+
+class CommentView(generics.ListCreateAPIView):
+    serializer_class = CommentSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get_queryset(self):
+        article_slug = self.kwargs['article_slug'].lower()
+        article = Article.objects.get(slug=article_slug)
+        return Comment.objects.filter(article=article)
+
