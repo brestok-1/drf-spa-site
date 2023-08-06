@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'ckeditor_uploader',
     'taggit',
     'taggit_serializer',
+    'drf_spectacular',
 
     'core',
 ]
@@ -176,6 +177,7 @@ SIMPLE_JWT = {
 }
 
 CORS_ORIGIN_WHITELIST = ["http://localhost:3000", "http://127.0.0.1:3000"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:3000"]
 
 # DRF
 
@@ -186,9 +188,9 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.DjangoModelPermissions",),
     'DEFAULT_PARSER_CLASSES': [
         'rest_framework.parsers.JSONParser',
-    ]
+    ],
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
 }
-
 
 # Redis
 
@@ -223,3 +225,11 @@ CELERY_RESULT_BACKEND = f'redis://{REDIS_HOST}:{REDIS_PORT}'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
+
+# Schemas
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "API BLOG",
+    "DESCRIPTION": "Backend for a full-fledged blog",
+    "VERSION": "1.0.0",
+}
