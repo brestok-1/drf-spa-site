@@ -1,4 +1,4 @@
-# <div align="center">CLOTHING STORE 🛍️</div>
+# <div align="center">BLOG API ⚙️</div>
 
 <div align="center">
 <img src="assets/token.png" align="center" style="width: 100%; height: 40%" />
@@ -104,4 +104,5 @@ Installation via a virtual environment is much more difficult, because the proje
 will have to additionally install Redis, Postgresql, Stripe CLI, and change the project settings. If you want to install
 the project through a virtual environment, please contact me and I will give you instructions.
 
-## <div align="center">Thank you for using my store! 👋</div>
+## <div align="center">
+Thank you for taking the time to review my project. I hope you find it useful and enjoyable to use! 👋</div>
