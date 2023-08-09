@@ -12,7 +12,7 @@ from core.tasks import send_feedback
 
 
 class PageNumberSetPaginator(pagination.PageNumberPagination):
-    page_size = 1
+    page_size = 5
     page_query_param = 'page_size'  # allows the client to set the page size for each request. This means that we can control the page size through a request.
     ordering = 'time_created'
 
@@ -98,4 +98,3 @@ class CommentView(generics.ListCreateAPIView):
         article_slug = self.kwargs['article_slug'].lower()
         article = Article.objects.get(slug=article_slug)
         return Comment.objects.filter(article=article)
-

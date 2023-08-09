@@ -6,8 +6,9 @@
 
 <br/>
 
-I made this django project to explore new technologies and libraries, as well as hone my docker containerization skill.
-In this project, I have collected the most popular and necessary tools for creating complex and full-fledged projects.
+I had a similar project written in Django, but I wanted to develop an API for it and decided to create a new project
+using Django Rest Framework. I tried to fill this project with the necessary and modern technologies to build a
+full-fledged Restful API project.
 
 ## Description
 
@@ -17,13 +18,13 @@ In this project, I have collected the most popular and necessary tools for creat
 
 <br/>
 
-This is one of the most complex Django projects that I have implemented to date. I created an online store where you can
-log in through social networks or register, receive email confirmation letters, purchase various products, sort them by
-categories, and then pay through the Stripe system. You can also see a list of all your orders and their status. This is
-a fully functional and ready-to-use online store.
-
-Since I position myself as a backend developer, I focused on the internal components, not the appearance of the
-site.
+This project provides an API for a blog. Authorization is done using the popular JWT technology. You can view your
+profile, see a list of all posts, as well as each post individually. In addition, you have access to post search. You
+can leave comments on each post. To contact us, you can use a POST request at [this](http://127.0.0.1:8000/api/contacts)
+link. For convenience, tags can be added to each post, which you can use to search for similar projects. Documentation
+is provided for the entire project. You can download it by following [this](http://127.0.0.1:8000/api/schema) link or
+view it in online format [here](http://127.0.0.1:8000/api/schema/redoc)
+or [here](http://127.0.0.1:8000/api/schema/swagger-ui).
 
 ## Technologies
 
@@ -132,13 +133,12 @@ python manage.py runserver
 ```
 
 11. You can log in to the [admin panel](http://127.0.0.1:8000/admin) and add new articles and comments or upload the
-   fixtures I created by entering the command:
+    fixtures I created by entering the command:
 
 ```
 python manage.py loaddata core/fixtures/blog.json
 ```
 
 #### Remember that you must have PostgreSQL and Redis installed on your computer.
-
 
 ## <div align="center"> Thank you for taking the time to review my project. I hope you find it useful and enjoyable to use! 👋</div>
