@@ -1,4 +1,4 @@
-# <div align="center">BLOG API ⚙️</div>
+# <div align="center">BLOG API 🌐</div>
 
 <div align="center">
 <img src="assets/token.png" align="center" style="width: 100%; height: 40%" />
@@ -97,12 +97,48 @@ docker-compose exec web python manage.py createsuperuser
 docker-compose exec web python manage.py loaddata core/fixtures/blog.json
 ```
 
-
 ***Method 2: Via virtual environment***
 
-Installation via a virtual environment is much more difficult, because the project has many third-party services. You
-will have to additionally install Redis, Postgresql, Stripe CLI, and change the project settings. If you want to install
-the project through a virtual environment, please contact me and I will give you instructions.
+1. Create and activate a python virtual environment
+2. In the terminal, enter the following command:
 
-## <div align="center">
-Thank you for taking the time to review my project. I hope you find it useful and enjoyable to use! 👋</div>
+```
+pip3 install -r requirements.txt
+```
+
+3. Create a .env file and paste the data from the .env.example file into it
+4. The value of the variables POSTGRES_HOST and REDIS_HOST specify 'localhost'
+5. Specify the user, password and name for the PostgreSQL and insert the values in the variables POSTGRES_USER,
+   POSTGRES_PASSWORD, POSTGRES_DB.
+5. Generate django secret key on [this site](https://djecrety.ir/) and specify it in the SECRET_KEY variable.
+6. Create an email and configure it to send messages. You can learn more about how to do
+   this [here](https://youtu.be/dnhEnF7_RyM?t=902).
+8. Perform migration to the database:
+
+```
+python manage.py migrate
+```
+
+9. Create a superuser by entering the following command:
+
+```
+python manage.py createsuperuser
+```
+
+10. In the terminal, enter the following command:
+
+```
+python manage.py runserver
+```
+
+11. You can log in to the [admin panel](http://127.0.0.1:8000/admin) and add new articles and comments or upload the
+   fixtures I created by entering the command:
+
+```
+python manage.py loaddata core/fixtures/blog.json
+```
+
+#### Remember that you must have PostgreSQL and Redis installed on your computer.
+
+
+## <div align="center"> Thank you for taking the time to review my project. I hope you find it useful and enjoyable to use! 👋</div>
