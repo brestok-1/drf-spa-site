@@ -13,7 +13,7 @@ full-fledged Restful API project.
 ## Description
 
 <div align="center">
-<img src="assets/articles.png" align="center" style="width: 100%; height: 40%" />
+<img src="assets/main.gif" align="center" style="width: 100%; height: 40%" />
 </div>
 
 <br/>
