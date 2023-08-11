@@ -20,6 +20,7 @@ class PageNumberSetPaginator(pagination.PageNumberPagination):
 
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
+    queryset = Article.objects.all()
     pagination_class = PageNumberSetPaginator
     lookup_field = 'slug'  # The model field that should be used for performing object lookup of individual model instances
     permission_classes = [permissions.AllowAny]

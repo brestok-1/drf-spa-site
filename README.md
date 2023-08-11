@@ -56,7 +56,10 @@ or [here](http://127.0.0.1:8000/api/schema/swagger-ui).
 
 ![Docker](https://img.shields.io/badge/-Docker-1C1C1C?&style=for-the-badge)
 
-
+To start with, I needed to implement user registration and authentication. As I mentioned earlier, I used JSON Web
+Token (JWT) authentication, which is a modern and popular standard. Next, I worked on posts and implemented search,
+pagination, and caching using Django's built-in methods. To manage tags, I used the Taggit library. I also integrated
+Celery for asynchronous feedback submission. Finally, I documented my APIs using the Spectacular library.
 
 ## Project setup
 
