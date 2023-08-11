@@ -139,4 +139,4 @@ python manage.py loaddata core/fixtures/blog.json
 
 #### Remember that you must have PostgreSQL and Redis installed on your computer.
 
-## <div align="center"> Thank you for taking the time to review my project. I hope you find it useful and enjoyable to use! 👋</div>
+## <div align="center"> Thank you for taking the time to review my project! 👋</div>
