@@ -56,12 +56,7 @@ or [here](http://127.0.0.1:8000/api/schema/swagger-ui).
 
 ![Docker](https://img.shields.io/badge/-Docker-1C1C1C?&style=for-the-badge)
 
-The main technologies used in the project are data caching with Redis, asynchronous email confirmation sending (I also
-implemented the sending mechanism myself), social media authentication through django-allauth. The most time-consuming
-task was connecting to Stripe. In addition to writing a controller that handles payments, I also had to configure
-webhook operation. I also integrated Stripe products and the django admin panel so that when a new product is added, the
-data is also updated in Stripe. It was not easy to package all of this into a Docker container, ensure the seamless
-operation of each service, and automate the deployment of the web application in Docker.
+
 
 ## Project setup
 

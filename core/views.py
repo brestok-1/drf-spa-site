@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from rest_framework import viewsets, permissions, pagination, generics, filters
-from rest_framework.mixins import CreateModelMixin
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.core.cache import cache
 from taggit.models import Tag
 
 from core.models import Article, Comment
@@ -20,11 +21,14 @@ class PageNumberSetPaginator(pagination.PageNumberPagination):
 class ArticleViewSet(viewsets.ModelViewSet):
     serializer_class = ArticleSerializer
     pagination_class = PageNumberSetPaginator
-    queryset = Article.objects.all()
     lookup_field = 'slug'  # The model field that should be used for performing object lookup of individual model instances
     permission_classes = [permissions.AllowAny]
     filter_backends = (filters.SearchFilter,)
     search_fields = ['content', 'h1']
+
+    @method_decorator(cache_page(60))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
 
 
 class TagDetailView(generics.ListAPIView):
